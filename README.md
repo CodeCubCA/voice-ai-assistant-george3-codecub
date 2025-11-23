@@ -1,27 +1,31 @@
 # Voice AI Assistant
 
-A voice-enabled AI chatbot built with Streamlit and Google Gemini API, featuring multiple AI personalities and speech-to-text capabilities.
+An intelligent AI chatbot with voice input and output capabilities, powered by Google Gemini AI. Features multiple AI personalities, voice-to-text input, and text-to-speech output for a complete conversational experience.
 
 ## Features
 
-- 🎤 **Voice Input** - Speak directly to the AI using your microphone
+- 🎤 **Voice Input** - Speak directly to the AI using your microphone with Web Speech API
+- 🔊 **Voice Output** - AI responses are automatically converted to speech using Google Text-to-Speech
 - 💬 **Text Input** - Type your messages for traditional chat interaction
+- 🗣️ **Voice-Only Mode** - Toggle to have AI respond with voice only (no text display)
+- 🎯 **Auto-Play Voice** - Option to automatically play AI voice responses
 - 🤖 **Multiple AI Personalities**:
   - General Assistant - Helpful and friendly for everyday tasks
   - Study Buddy - Patient learning companion for education
   - Fitness Coach - Motivating health and fitness guidance
   - Gaming Helper - Knowledgeable gaming companion
 - 💾 **Chat History** - Maintains conversation context throughout your session
-- 🎨 **Clean UI** - User-friendly interface with clear instructions
-- 🔄 **Auto-Response** - Voice messages automatically trigger AI responses
+- 🎨 **Polished UI** - User-friendly interface with clear instructions and controls
+- ⚡ **Streaming Responses** - Real-time AI response generation for faster interaction
 
 ## Technologies Used
 
+- **Python** - Core programming language
 - **Streamlit** - Web application framework
-- **Google Gemini 2.5 Flash** - AI language model
-- **SpeechRecognition** - Google Speech Recognition for voice-to-text
-- **audio-recorder-streamlit** - Browser-based audio recording
-- **pydub** - Audio processing
+- **Google Gemini 2.5 Flash** - AI language model for intelligent conversations
+- **SpeechRecognition** - Google Speech Recognition for voice-to-text conversion
+- **gTTS (Google Text-to-Speech)** - Text-to-speech conversion for AI responses
+- **audio-recorder-streamlit** - Browser-based audio recording component
 - **python-dotenv** - Environment variable management
 
 ## Installation
@@ -61,13 +65,17 @@ streamlit run app.py
 3. **Using Voice Input**:
    - Click the microphone button
    - Speak your message clearly
-   - The AI will automatically transcribe and respond
+   - The AI will automatically transcribe and respond with both text and voice
 
 4. **Using Text Input**:
    - Type your message in the text box at the bottom
    - Press Enter to send
 
-5. **Switching Personalities**:
+5. **Voice Response Options**:
+   - Enable "Auto-play AI voice responses" to hear responses automatically
+   - Enable "Voice-only mode" for voice-only responses (no text display)
+
+6. **Switching Personalities**:
    - Use the dropdown in the sidebar
    - Chat history clears when switching personalities
 
@@ -97,7 +105,7 @@ google-generativeai>=0.3.2
 python-dotenv>=1.0.0
 audio-recorder-streamlit>=0.0.8
 SpeechRecognition>=3.10.0
-pydub>=0.25.1
+gtts>=2.3.0
 ```
 
 ## Author

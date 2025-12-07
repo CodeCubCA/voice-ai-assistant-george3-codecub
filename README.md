@@ -1,6 +1,28 @@
 # Voice AI Assistant
 
+> 🎯 **Portfolio Project by CodeCub CA**
+
 An intelligent AI chatbot with voice input and output capabilities, powered by Google Gemini AI. Features multiple AI personalities, voice-to-text input, and text-to-speech output for a complete conversational experience.
+
+## 🖼️ Project Showcase
+
+![Voice AI Assistant Interface](screenshot.png)
+
+### ✨ Design Highlights
+
+- **🎨 Modern UI/UX**: Beautiful animated gradient background with smooth color transitions
+- **💎 Glassmorphism Effects**: Sleek, semi-transparent design elements with backdrop blur
+- **🎭 Interactive Elements**: Hover effects, animations, and responsive components
+- **🌈 Premium Styling**: Custom CSS with professional typography using Google's Inter font
+- **📱 Responsive Layout**: Clean, wide layout optimized for desktop and tablet use
+
+### 🎯 Key Features Demonstrated
+
+This project showcases my skills in:
+- **Frontend Development**: Advanced CSS animations, glassmorphism, and modern UI patterns
+- **API Integration**: Google Gemini AI, Speech Recognition, and Text-to-Speech APIs
+- **Python Development**: Clean, modular code structure with session state management
+- **UX Design**: Intuitive voice and text input methods with visual feedback
 
 ## Features
 

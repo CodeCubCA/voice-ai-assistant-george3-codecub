@@ -69,18 +69,29 @@ st.set_page_config(
 # Custom CSS for beautiful styling
 st.markdown("""
 <style>
-    /* Animated gradient background */
+    /* Import Google Fonts for better typography */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+    * {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* Animated gradient background with particles effect */
     .main {
-        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe, #5f72bd, #9921e8);
         background-size: 400% 400%;
-        animation: gradientShift 15s ease infinite;
+        animation: gradientShift 20s ease infinite;
         padding: 2rem;
         min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
     }
 
     @keyframes gradientShift {
         0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
+        25% { background-position: 100% 50%; }
+        50% { background-position: 100% 100%; }
+        75% { background-position: 0% 100%; }
         100% { background-position: 0% 50%; }
     }
 
@@ -139,31 +150,52 @@ st.markdown("""
         border: 1px solid rgba(102, 126, 234, 0.3);
     }
 
-    /* Enhanced chat messages with animation */
+    /* Enhanced chat messages with animation and glassmorphism */
     .stChatMessage {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
-        border-radius: 20px;
-        padding: 1.5rem;
-        margin: 0.8rem 0;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        animation: messageSlideIn 0.4s ease-out;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+        border-radius: 24px;
+        padding: 2rem;
+        margin: 1rem 0;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2),
+                    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        animation: messageSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        backdrop-filter: blur(20px);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stChatMessage::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s;
+    }
+
+    .stChatMessage:hover::before {
+        left: 100%;
     }
 
     .stChatMessage:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px) scale(1.01);
+        box-shadow: 0 15px 60px rgba(102, 126, 234, 0.3),
+                    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+        border-color: rgba(102, 126, 234, 0.5);
     }
 
     @keyframes messageSlideIn {
         from {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px) scale(0.95);
         }
         to {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
     }
 
@@ -199,44 +231,80 @@ st.markdown("""
         font-weight: 600;
     }
 
-    /* Enhanced buttons with 3D effect */
+    /* Enhanced buttons with 3D effect and premium styling */
     .stButton button {
-        border-radius: 12px;
-        font-weight: 600;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        border: none;
+        border-radius: 16px;
+        font-weight: 700;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2),
+                    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 0.5px;
+    }
+
+    .stButton button::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+
+    .stButton button:hover::before {
+        width: 300px;
+        height: 300px;
     }
 
     .stButton button:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5),
+                    0 0 0 2px rgba(255, 255, 255, 0.3) inset;
+        border-color: rgba(255, 255, 255, 0.4);
     }
 
     .stButton button:active {
-        transform: translateY(-1px) scale(0.98);
+        transform: translateY(-2px) scale(0.98);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     }
 
-    /* Modern input fields */
+    /* Modern input fields with glassmorphism */
     .stTextInput input {
-        border-radius: 12px;
-        border: 2px solid rgba(102, 126, 234, 0.5);
+        border-radius: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.4);
         background: rgba(255, 255, 255, 0.95);
-        transition: all 0.3s ease;
-        padding: 0.75rem 1rem;
+        backdrop-filter: blur(10px);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        padding: 1rem 1.5rem;
+        font-size: 1.05rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1),
+                    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
     }
 
     .stTextInput input:focus {
         border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3),
+                    0 8px 24px rgba(102, 126, 234, 0.2),
+                    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
         background: white;
+        transform: translateY(-2px);
     }
 
-    /* Smooth audio player */
+    /* Smooth audio player with premium styling */
     audio {
         width: 100%;
-        border-radius: 12px;
-        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        border-radius: 16px;
+        filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.15));
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8));
+        padding: 0.5rem;
+        backdrop-filter: blur(10px);
     }
 
     /* Animated spinner */
